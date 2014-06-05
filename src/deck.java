@@ -17,7 +17,7 @@ public class deck
 {
 //Variables
 	int numberOfCards, size, numberOfPlayer, deckSize, turn, randomCard;
-	List<card> player2Deck, player3Deck, player4Deck;
+	ArrayList<card> player2Deck, player3Deck, player4Deck;
 	ArrayList<String> test = new ArrayList<String>();
 	ArrayList<String> newTemp = new ArrayList<String>();
 	ArrayList<card> temp = new ArrayList<card>();
@@ -28,8 +28,8 @@ public class deck
 //Constructors
 	deck(int newNumberOfPlayer)
 	{
+		//Make sure to put the
 		numberOfPlayer = newNumberOfPlayer;
-		//TODO put 3 estates and 7 copper up in this. 
 		deckSize = 10;
 	}	
 //Constructors
@@ -57,20 +57,17 @@ public class deck
 	//Mutators
 		
 	//Other
-	public void toHand()
-	{
-		//TODO allow the user to get cards put in their hand from their deck. 
-	}
 	public void fromDiscard(ArrayList<card> temp, int numberOfPlayer)
 	{
 		/* gets cards from the discard pile and stores them as the new deck
 		 * @param (List<card> temp) contains list of cards
 		 * @param (int numberOfPlayer) contains an integer 1-4 signifying the number the player is
+		 * player1Deck.fromDiscard(player1Discard.toDeck(), 1); <-- example of set up
 		 */
 
 		if(numberOfPlayer == 1)
 		{
-			player1Deck = temp;
+			player1Deck = temp; //Sets the returned value from discard piles toDeck method as the player1Deck, which will be empty.
 		}
 		if(numberOfPlayer == 2)
 		{
@@ -85,14 +82,16 @@ public class deck
 			player4Deck = temp;
 		}
 	}
-	public List<card> toHand(int newDraw, int numberOfPlayer)
+	public ArrayList<card> toHand(int newDraw, int numberOfPlayer)
 	{
-		if(numberOfPlayer == 1)
+		if(numberOfPlayer == 1) //If the number of player number is 1
 		{
-			size = player1Deck.size();
+			size = player1Deck.size(); //Allows them to find the size of this.
 			for(int d = 0; d<newDraw; d++)
 			{
-				temp.add(player1Deck.get(d));
+				//While D is less than the amount that the user requested to draw, continue adding 1 card to hand. 
+				temp.add(player1Deck.get(d)); //Adds a single card to the hand
+				player1Deck.remove(d);  //Removes the card that was added to the hand. 
 			}
 		}
 		if(numberOfPlayer == 2)
@@ -101,6 +100,7 @@ public class deck
 			for(int d = 0; d<newDraw; d++)
 			{
 				temp.add(player2Deck.get(d));
+				player2Deck.remove(d);
 			}
 		}
 		if(numberOfPlayer == 3)
@@ -109,6 +109,7 @@ public class deck
 			for(int d = 0; d<newDraw; d++)
 			{
 				temp.add(player3Deck.get(d));
+				player3Deck.remove(d);
 			}
 		}
 		if(numberOfPlayer == 4)
@@ -117,13 +118,14 @@ public class deck
 			for(int d = 0; d<newDraw; d++)
 			{
 				temp.add(player4Deck.get(d));
+				player4Deck.remove(d);
 			}
 		}
 		return temp;
 	}
 	public void shuffle(int numberOfPlayer)
 	{
-		//Have the game tell what turn it is
+		
 		//Code
 		if(numberOfPlayer == 1)
 		{
@@ -170,3 +172,4 @@ public class deck
 	//Other
 //Methods
 }
+//TODO try to make it so then game can give all the information needed. 
